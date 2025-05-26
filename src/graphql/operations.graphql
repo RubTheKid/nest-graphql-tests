@@ -1,5 +1,11 @@
-# Queries
-query GetAllUsers {
+mutation Mutation($data: CreateUserInput!) {
+  createUser(data: $data) {
+    name
+    email
+  }
+}
+
+query {
   users {
     id
     name
@@ -7,29 +13,26 @@ query GetAllUsers {
   }
 }
 
-# Mutations
-mutation CreateUser($data: CreateUserInput!) {
-  createUser(data: $data) {
+mutation {
+  updateUser(
+    id: "ff8e3872-af43-4581-bd52-281d1dce6f2c"
+    data: { name: "Updated name", email: "updated@email.com" }
+  ) {
     id
     name
     email
   }
 }
- 
-# Examples
-# Variables:
-# {
-#   "data": {
-#     "name": "John Doe",
-#     "email": "john@example.com"
-#   }
-# }
 
-# Mutations exampel
-mutation CreateUserDirect {
+mutation {
   createUser(data: { name: "John Doe", email: "john@example.com" }) {
     id
     name
     email
   }
-} 
+}
+
+
+mutation {
+  deleteUser(id: "ff8e3872-af43-4581-bd52-281d1dce6f2c")
+}

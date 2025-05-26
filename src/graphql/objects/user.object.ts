@@ -10,4 +10,7 @@ export class UserObject {
 
     @Field()
     email: string;
+
+    @Field()
+    deleted: boolean;
 }

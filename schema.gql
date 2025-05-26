@@ -15,13 +15,21 @@ type CreateUserResponse {
 
 type Mutation {
   createUser(data: CreateUserInput!): CreateUserResponse!
+  deleteUser(id: String!): Boolean!
+  updateUser(data: UpdateUserInput!, id: ID!): UserObject!
 }
 
 type Query {
   users: [UserObject!]!
 }
 
+input UpdateUserInput {
+  email: String!
+  name: String!
+}
+
 type UserObject {
+  deleted: Boolean!
   email: String!
   id: ID!
   name: String!

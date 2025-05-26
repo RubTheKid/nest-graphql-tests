@@ -13,6 +13,11 @@ export class CreateUserInput {
     name: string;
 }
 
+export class UpdateUserInput {
+    email: string;
+    name: string;
+}
+
 export class CreateUserResponse {
     email: string;
     id: string;
@@ -21,6 +26,10 @@ export class CreateUserResponse {
 
 export abstract class IMutation {
     abstract createUser(data: CreateUserInput): CreateUserResponse | Promise<CreateUserResponse>;
+
+    abstract deleteUser(id: string): boolean | Promise<boolean>;
+
+    abstract updateUser(data: UpdateUserInput, id: string): UserObject | Promise<UserObject>;
 }
 
 export abstract class IQuery {
@@ -28,6 +37,7 @@ export abstract class IQuery {
 }
 
 export class UserObject {
+    deleted: boolean;
     email: string;
     id: string;
     name: string;
